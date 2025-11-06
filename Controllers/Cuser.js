@@ -61,7 +61,7 @@ const addUser = async(req, res) =>{
 const authUser = async(req, res) =>{
   const { email, password} = req.body;
   try {
-    const existUser = await UserModel.find({email, password});
+    const existUser = await UserModel.findOne({email});
     if(existUser){
       
             const Token =  genJWT(existUser._id, existUser.name, existUser.email, existUser.isAdmin);
